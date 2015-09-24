@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    Una pagina con plantilla	
+{% endblock %}
+
+{% block body %}
+    Bienvenido a la aplicacion, esta es una plantilla. {{ nombre }} :-)
+    {% set system_messages = ['error', 'warning', 'notice', 'success'] %}
+	{% for type in system_messages %}
+		<p>{{ type|upper }}</p>
+	{% endfor %}
+
+	{% set x = 5638827776 / 73 %}
+	{{ x|number_format(2, ',', '.') }}
+
+	<ul>
+		<li><a target="_blank" href="{{ url('crearpost') }}">Crear un post</a> </li>
+	</ul>
+
+{% endblock %}
+

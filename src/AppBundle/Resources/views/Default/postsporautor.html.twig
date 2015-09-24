@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+	<ul>
+    {% for post in posts %}
+		<li>{{ post.titulo }}</li>        
+    {% endfor %}
+	</ul>
+{% endblock %}

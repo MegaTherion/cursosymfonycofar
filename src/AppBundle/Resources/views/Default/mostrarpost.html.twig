@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <p>Titulo: {{ post.titulo }}</p>
+    <p>Texto: {{ post.texto }}</p>
+    <h2>Categorias {{ post.categorias.count }}</h2>
+    <ul>
+    	{% for categoria in post.categorias %}
+    	    <li>{{ categoria }}</li>
+    	{% endfor %}
+    </ul>
+{% endblock %}
