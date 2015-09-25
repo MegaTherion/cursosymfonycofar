@@ -107,13 +107,23 @@ class DefaultController extends Controller
      * @Route("/postsporautor/{id}", name="postsporautor")
      * @Template()
      */
-    public function postsporautorAction(Autor $autor)
+    public function postsporautorAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->createQuery('SELECT p from AppBundle:Post p where p.autor = ?1 order by p.titulo asc')
-                        ->setParameter(1, $autor)
-                        ->getResult();
+        $posts = null;
+        $autor = $em->getRepository('AppBundle:Autor')->find($id);
+        if (!$autor) {
+            $this->get('session')->getFlashBag()->add('notice', 'No existe este autor');
+        }
+        else 
+            $posts = $em->getRepository('AppBundle:Autor')->getPostsPorAutor($autor);
+
+        // $posts = $em->createQuery('SELECT p from AppBundle:Post p where p.autor = ?1 order by p.titulo asc')
+        //                 ->setParameter(1, $autor)
+        //                 ->getResult();
         return array('posts'=>$posts);
         
     }
+
+    
 }

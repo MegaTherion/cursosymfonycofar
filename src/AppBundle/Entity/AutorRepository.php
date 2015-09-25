@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Autor;
+
 /**
  * AutorRepository
  *
@@ -10,5 +12,12 @@ namespace AppBundle\Entity;
  */
 class AutorRepository extends \Doctrine\ORM\EntityRepository
 {
-	
+	public function getPostsPorAutor(Autor $autor)
+	{
+		$em = $this->getEntityManager();
+		$query = $em->createQuery('SELECT p from AppBundle:Post p where p.autor = :autor')
+					->setParameter('autor', $autor)
+					;
+		return $query->getResult();
+	}
 }

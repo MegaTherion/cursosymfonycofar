@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Formulario:simpleform{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Formulario:simpleform page</h1>
+
+{{ form(form) }}
+
+{% if nombre is not null %}
+<h2>Hola {{ nombre }}</h2>
+{% endif %}
+
+{% endblock %}
