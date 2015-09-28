@@ -25,6 +25,15 @@ class FormularioController extends Controller
     							'required'=>false,
     							))
     				->add('fechanac', 'birthday', array('label'=>'Fecha de nacimiento'))
+    				->add('sexo', 'choice', array(
+    					'choices'=>array(
+    						'masculino'=>'Masculino',
+    						'femenino'=>'Femenino',
+    						),
+    					'expanded'=>true,
+    					'multiple'=>true,
+    					))
+    				->add('observaciones','textarea')
     				->add('enviar', 'submit', array('label'=>'Guardar registro'))
     				->getForm();
 
