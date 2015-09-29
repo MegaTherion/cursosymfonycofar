@@ -5,29 +5,34 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Autor
+ * Tag
  *
- * @ORM\Table(name="autor")
- * @ORM\Entity(repositoryClass="\AppBundle\Entity\AutorRepository")
+ * @ORM\Table()
+ * @ORM\Entity
  */
-class Autor
+class Tag
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nombre", type="string", length=50)
      */
     private $nombre;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="tags")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     */
+     private $post;
 
 
     /**
@@ -45,7 +50,7 @@ class Autor
      *
      * @param string $nombre
      *
-     * @return Autor
+     * @return Tag
      */
     public function setNombre($nombre)
     {
@@ -63,9 +68,5 @@ class Autor
     {
         return $this->nombre;
     }
-
-    public function __toString()
-    {
-        return $this->nombre;
-    }
 }
+

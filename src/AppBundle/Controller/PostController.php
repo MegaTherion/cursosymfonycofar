@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Tag;
 use AppBundle\Form\PostType;
 
 /**
@@ -55,6 +56,7 @@ class PostController extends Controller
             {
 
                 $em = $this->getDoctrine()->getManager();
+                $entity->upload();
                 $em->persist($entity);
                 $em->flush();
 
@@ -97,6 +99,13 @@ class PostController extends Controller
     public function newAction()
     {
         $entity = new Post();
+        $tag1 = new Tag();
+        $tag1->setNombre('Ok');
+        $tag2 = new Tag();
+        $tag2->setNombre('No');
+        $entity->addTag($tag1);
+        $entity->addTag($tag2);
+
         $form   = $this->createCreateForm($entity);
 
         return array(

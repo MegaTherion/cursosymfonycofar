@@ -10,6 +10,7 @@
                 <th>Titulo</th>
                 <th>Createdat</th>
                 <th>Texto</th>
+                <th>Archivo</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ entity.titulo }}</td>
                 <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.texto }}</td>
+                <td><a href="/{{ entity.webPath }}">Abrir</a></td>
                 <td>
                 <ul>
                     <li>
