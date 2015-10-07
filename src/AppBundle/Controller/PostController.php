@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Tag;
 use AppBundle\Form\PostType;
@@ -15,6 +16,7 @@ use AppBundle\Form\PostType;
  * Post controller.
  *
  * @Route("/post")
+ * @Security("has_role('ROLE_EDITOR')")
  */
 class PostController extends Controller
 {

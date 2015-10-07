@@ -10,9 +10,37 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Autor;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class DefaultController extends Controller
 {
+
+    /**
+     * Route("/login", name="login")
+     * Template()
+     */
+    // public function loginAction(Request $request)
+    // {
+    //     $session = $request->getSession();
+    //     $error = false;
+    //     if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR))
+    //     {
+    //         $error=$request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+    //     }
+    //     else
+    //     {
+    //         $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+    //         $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+    //     }
+        
+    //     return 
+    //             array(
+    //                 'last_username'=>$session->get(SecurityContext::LAST_USERNAME),
+    //                 'error'=> $error,
+                
+    //             );
+    // }
+
     /**
      * @Route("/", name="homepage")
      */

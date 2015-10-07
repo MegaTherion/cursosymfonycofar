@@ -29,7 +29,7 @@ class Tag
     private $nombre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="tags")
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="tags",cascade={"persist"})
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
      private $post;
@@ -68,5 +68,28 @@ class Tag
     {
         return $this->nombre;
     }
-}
 
+    /**
+     * Set post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return Tag
+     */
+    public function setPost(\AppBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \AppBundle\Entity\Post
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+}

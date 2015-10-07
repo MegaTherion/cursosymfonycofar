@@ -156,7 +156,7 @@ class Post
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Tag", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="Tag", mappedBy="post",cascade={"persist"})
      */
      private $tags;
 
@@ -295,6 +295,7 @@ class Post
     {
         $this->createdAt = new \DateTime();
         $this->categorias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -329,5 +330,65 @@ class Post
     public function getCategorias()
     {
         return $this->categorias;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     *
+     * @return Post
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param \AppBundle\Entity\Tag $tag
+     *
+     * @return Post
+     */
+    public function addTag(\AppBundle\Entity\Tag $tag)
+    {
+        $this->tags[] = $tag;
+
+        $tag->setPost($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \AppBundle\Entity\Tag $tag
+     */
+    public function removeTag(\AppBundle\Entity\Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
